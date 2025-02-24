@@ -1,0 +1,40 @@
+@startuml
+
+class TreeNode {
+    +char value
+    +TreeNode *left
+    +TreeNode *right
+    +TreeNode(char c)
+    +TreeNode()
+}
+
+class DFA {
+    +int startState
+    +vector<int> states
+    +vector<int> finalStates
+    +map<int, map<char, int>> transitions
+    +vector<char> alphabet
+    +DFA(int, vector<int>&, vector<int>&, map<int, map<char, int>>&, vector<char>&)
+}
+
+class Utility {
+    +static vector<T> unionSet(vector<T>, vector<T>)
+    +static bool isOperator(char)
+    +static void printTransitionTable(DFA&)
+    +static TreeNode *createSyntaxTree(vector<char>&)
+    +static bool nullable(TreeNode *)
+    +static vector<int> firstPos(TreeNode *)
+    +static vector<int> lastPos(TreeNode *)
+    +static void traverseFirstPos(TreeNode *)
+    +static void traverseLastPos(TreeNode *)
+    +static void followPos(TreeNode *)
+    +static void printTree(TreeNode *)
+    +static void enumerateLeaves(TreeNode *, int &, map<TreeNode *, int> &)
+    +static DFA regextoDFA(string &, vector<char> &)
+}
+
+TreeNode "1" -- "*" TreeNode : left
+TreeNode "1" -- "*" TreeNode : right
+DFA "1" -- "*" Utility
+
+@enduml

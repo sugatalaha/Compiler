@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include<regex>
+#include <iomanip>
 using namespace std;
 
 class Token
@@ -130,6 +131,7 @@ vector<Token> extractTokens(string &line,int row)
                     string op=x+line[i+1];
                     string id2="operator";
                     tokens.push_back(Token(op,id2,row,i-op.length()));
+                    i++;
                     continue;
                 }
             }
@@ -214,21 +216,22 @@ int main()
         tokens.push_back(tokensPerLine);
         row++;
     } 
-    int maxLen=0;
-    for(auto tokenVector:tokens)
+cout << left << setw(20) << "Type"
+     << left << setw(30) << "Token Value"
+     << left << setw(10) << "Row"
+     << left << setw(10) << "Column" << endl;
+
+cout << string(70, '-') << endl; // Print a separator line
+
+for (auto tokenVector : tokens)
+{
+    for (auto token : tokenVector)
     {
-        for(auto token:tokenVector)
-        {
-            string t=token.getType();
-            maxLen=max(maxLen,(int)t.length());
-        }
+        cout << left << setw(20) << token.getType()
+             << left << setw(30) << token.getTokenValue()
+             << left << setw(10) << token.getRow()
+             << left << setw(10) << token.getCol() << endl;
     }
-    for(auto tokenVector:tokens)
-    {
-        for(auto token:tokenVector)
-        {
-            cout<<token.getType()<<" "<<token.getTokenValue()<<" "<<token.getRow()<<" "<<token.getCol()<<endl;
-        }
-    }
+}
     return 0;
 }
